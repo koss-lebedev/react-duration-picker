@@ -1,0 +1,44 @@
+{
+  "name": "react-duration-picker",
+  "version": "1.0.0",
+  "description": "React component for selecting duration",
+  "main": "index.js",
+  "scripts": {
+    "clear": "rm -rf dist && mkdir dist",
+    "build:develop": "NODE_ENV=development webpack src/index.js dist/react-duration-picker.js",
+    "build:production": "NODE_ENV=production webpack src/index.js dist/react-duration-picker.min.js",
+    "build:publish": "npm run build:develop && npm run build:production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/koss-lebedev/react-duration-picker.git"
+  },
+  "keywords": [
+    "react",
+    "duration",
+    "picker"
+  ],
+  "author": "Constantine Lebedev <koss.lebedev@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/koss-lebedev/react-duration-picker/issues"
+  },
+  "homepage": "https://github.com/koss-lebedev/react-duration-picker#readme",
+  "peerDependencies": {
+    "react": "^0.14.0 || ^15.0.0"
+  },
+  "devDependencies": {
+    "@strv/eslint-config-javascript": "^6.5.0",
+    "babel-cli": "^6.23.0",
+    "babel-core": "^6.21.0",
+    "babel-loader": "^6.2.10",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-react": "^6.16.0",
+    "babel-preset-stage-2": "^6.24.1",
+    "css-loader": "^0.26.1",
+    "eslint": "^3.19.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-react": "^6.10.3",
+    "webpack": "^2.5.1"
+  }
+}
