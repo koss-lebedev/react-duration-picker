@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 export default class DurationPicker extends Component {
 
@@ -28,26 +29,25 @@ export default class DurationPicker extends Component {
     }
 
     this.setState({ value, days, hours, minutes, seconds })
+    this.props.onChange(value)
   }
 
-  buildDisplayBlock(key, hidden, max) {
-    if (!hidden) {
-      return (
-        <div className="bdp-block">
-          <input className="form-control input-sm" type="number" min="0" value="0" max={max} />
-          <div>{this.translate(key)}</div>
-        </div>
-      )
-    }
+  buildDisplayBlock(key, max) {
+    return (
+      <div className="bdp-block">
+        <input className="form-control input-sm" type="number" min="0" value="0" max={max} />
+        <div>{this.translate(key)}</div>
+      </div>
+    )
   }
 
   render() {
     return(
       <div className="bdp-input">
-        {this.buildDisplayBlock('days', this.props.showDays)}
-        {this.buildDisplayBlock('hours', false, this.props.showDays ? 23 : null)}
-        {this.buildDisplayBlock('minutes', false, 59)}
-        {this.buildDisplayBlock('seconds', this.props.showSeconds, 59)}
+        {this.props.showDays && this.buildDisplayBlock('days')}
+        {this.buildDisplayBlock('hours', this.props.showDays ? 23 : null)}
+        {this.buildDisplayBlock('minutes', 59)}
+        {this.props.showSeconds && this.buildDisplayBlock('seconds', 59)}
       </div>
     )
   }
@@ -66,4 +66,10 @@ DurationPicker.defaultProps = {
   },
   showSeconds: false,
   showDays: true,
-};
+}
+
+DurationPicker.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  showSeconds: PropTypes.bool,
+  showDays: PropTypes.bool,
+}
